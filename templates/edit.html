@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Todo App | Home
+{% endblock %}
+
+{% block section %}
+      <section id="section">
+        <div class="container" id="container" style="padding: 0 135px;">
+            <h1>ToDo App</h1>
+            <h4>Edit Task</h4>
+            {% if taskedit %}
+            <form class="inline-form" action="/edit" method="POST">
+                <input type="hidden" name="taskid" value="{{taskedit['id']}}">
+                <ul class="h-menu bg-red fg-black" style="padding: 5px;">
+                    <li><input type="text" value="{{taskedit['task']}}" class="input-small" data-role="input" data-prepend="Task Todo: " name="todo"></li>
+                    <li>
+                        <select data-role="select" class="input-small" name="importance" value="{{taskedit['importance']}}">
+                            <option value="">Task Importance&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</option>
+                            <option value="Urgent">Urgent&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</option>
+                            <option value="Important">important&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</option>
+                            <option value="Not Important">Not Important&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</option>
+                    </select>
+                    </li>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <li><button class="button light outline small rounded" onclick="submitForm()">Update Task</button></li>
+                    
+                    <button class="button light  small rounded" type="button" id="theme" onclick="changeTheme()" style="margin-left: 100px;">Light Theme</button>
+                </ul>
+
+            </form>
+            {% endif %}
+            <br>
+            {% for message in get_flashed_messages() %}
+            <div class="alert alert-warning">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                {{ message }}
+            </div>
+            {% endfor %}
+
+            <br>
+            <button onclick="window.history.back();"  class="button shadowed small rounded alert">Go Back</button>
+        </div>
+      </section>
+{% endblock %}

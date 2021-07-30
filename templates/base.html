@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>
+        {% block title %}
+        {% endblock %}
+    </title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <!-- Metro 4 -->
+    <link rel="stylesheet" href="https://cdn.metroui.org.ua/v4/css/metro-all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300&display=swap" rel="stylesheet">
+    <script src="{{url_for('static', filename='script.js')}}"></script>
+    <style>
+        .darkmode {
+            background-color: black;
+            color: white;
+        }
+        h1 {
+            font-family: 'Oswald', sans-serif;
+        }
+    </style>
+  </head>
+  <body>
+      <nav>
+        <ul class="h-menu bg-red fg-white">
+            <li><a href="#">&nbsp;</a></li>
+        </ul>
+      </nav>
+      {% block section %}
+      {% endblock %}
+    
+
+    <!-- Metro 4 -->
+    <script src="https://cdn.metroui.org.ua/v4/js/metro.min.js"></script>
+    <script>
+        var section = document.getElementsByTagName('body')[0];
+        var theme = document.getElementById('theme');
+        function changeTheme(){
+            if (theme.innerText == 'Light Theme'){
+                section.classList.add("darkmode");
+                theme.innerText = 'Dark Theme';
+                theme.classList.remove('light');
+                theme.classList.add('dark');
+            }else{
+                section.classList.remove('darkmode');
+                theme.innerText = 'Light Theme';
+                theme.classList.remove('dark');
+                theme.classList.add('light');
+            };
+        }
+
+        function submitForm() {
+                var frm = document.getElementsByName('form')[0];
+                frm.submit();
+                frm.reset();
+                return false;
+                }
+    </script>
+  </body>
+</html>
